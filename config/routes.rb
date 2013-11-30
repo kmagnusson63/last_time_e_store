@@ -1,4 +1,5 @@
 LastTimeEStore::Application.routes.draw do
+  root :to => 'store#index', :via => :get
   #get "store/index"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -6,7 +7,7 @@ LastTimeEStore::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root :to => 'store#index', :via => :get
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

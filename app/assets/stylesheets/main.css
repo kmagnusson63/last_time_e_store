@@ -1,0 +1,17 @@
+#content
+{
+	border: 1px solid blue;
+	margin: 0 11% 0 11%;
+}
+#products
+{
+	border: 1px solid green;
+	padding: 10px;
+	margin: 10px;
+}
+.product
+{
+	border:1px solid #FF0000;
+	padding: 10px;
+	margin: 10px;
+}
