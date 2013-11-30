@@ -1,5 +1,9 @@
 == README
 
+E-Store for Heartland Computer Works
+Version 1.4
+Started: November 29, 2013
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
