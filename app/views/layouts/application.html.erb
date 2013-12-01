@@ -8,7 +8,10 @@
   </head>
   <body>
     <%= render "layouts/header" %>
-    <%= render "layouts/navbar" %>
+    <div id="navbar">
+      <%= render "layouts/navbar" %>
+      <%= render "layouts/search" %>
+    </div>
     <%= render "layouts/category" %>
     <%= render "layouts/cart" %>
     <%= yield %>
