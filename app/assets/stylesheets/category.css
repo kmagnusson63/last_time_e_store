@@ -9,3 +9,11 @@
 {
 	list-style: none;
 }
+#category_nav ul li a
+{
+	
+}
+#category_nav ul li a, #category_nav ul li a:link, #category_nav ul li a:active, #category_nav ul li a:visited, #category_nav ul li a:hover
+{
+	text-decoration: none;
+}

@@ -1,7 +1,7 @@
 <div id="category_nav">
 	<ul>
 		<% @categories.each do |category| %>
-			<li><%= category.name %></li>
+			<li><%= link_to category.name, search_results_path(:category => category.id) %></li>
 		<% end %>
 	</ul>
 </div>

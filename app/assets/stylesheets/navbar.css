@@ -14,14 +14,16 @@ nav
 {
 	/* border: 1px solid red; */
 	background: #3a6bb8;
-	padding: 10px 0px;
+	padding: 0px 0px;
 	border-top: 1px solid #000;
 	border-bottom: 1px solid #000;
 	margin-top: 0px;
+	position: relative;
+	height: 40px;
 }
 nav ul
 {
-	padding:0;
+	padding-top:12px ;
 	margin: 0;
 /*	text-align: center;
 */}
@@ -47,4 +49,16 @@ nav ul li a:hover
 	color: #000;
 /*	font-weight: bold;
 */	text-shadow: 2px 2px 2px #FFF;
+}
+#keywords
+{
+	width: 200px;
+	margin:;
+}
+nav form
+{
+	float:right;
+	margin: 0;
+	padding-top:3px;
+	line-height: 75%;
 }
