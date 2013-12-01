@@ -3,8 +3,8 @@ class CreateImages < ActiveRecord::Migration
     create_table :images do |t|
       t.string :filename
       t.string :location
-      t.integer :images_id
-      t.integer :products_id
+      t.integer :image_id
+      t.integer :product_id
 
       t.timestamps
     end
