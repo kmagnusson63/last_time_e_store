@@ -1,0 +1,50 @@
+nav ul
+{
+	list-style: none;
+	padding:0;
+	font-size: 20px;
+	font-weight: bold;
+}
+nav ul li
+{
+	padding:  0 10px;
+}
+
+nav
+{
+	/* border: 1px solid red; */
+	background: #3a6bb8;
+	padding: 10px 0px;
+	border-top: 1px solid #000;
+	border-bottom: 1px solid #000;
+	margin-top: 0px;
+}
+nav ul
+{
+	padding:0;
+	margin: 0;
+/*	text-align: center;
+*/}
+nav ul li
+{
+	font-weight: bold;
+	display: inline;
+	padding: 0 20px;
+	color:#FFF;
+/*	text-shadow: 2px 2px 2px #000;
+*/
+}
+
+nav ul li a:link, nav ul li a:active, nav ul li a:visited
+{
+	color:#FFF;
+	text-shadow: 2px 2px 2px #000;
+	text-decoration: none;
+}
+nav ul li a:hover
+{
+	border:1px solid green;
+	color: #000;
+/*	font-weight: bold;
+*/	text-shadow: 2px 2px 2px #FFF;
+}

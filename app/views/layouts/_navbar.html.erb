@@ -1,0 +1,8 @@
+<nav>
+	<ul>
+		<li><%= link_to "Home", "/" %></li>
+		<% @navbar.each do |navbar| %>
+			<li><%= link_to navbar.permalink, "/#{navbar.permalink}" %></li>
+		<% end %>
+	</ul>
+</nav>

@@ -1,8 +1,11 @@
 LastTimeEStore::Application.routes.draw do
   root :to => 'store#index', :via => :get
   #get "store/index"
+  
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  match '*permalk' => 'nav_bar#index', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
