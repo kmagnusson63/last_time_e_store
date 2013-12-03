@@ -2,5 +2,5 @@
 	<h3><%= product.name %></h3>
 	<p><%= product.description %></p>
 	<p>SKU: <%= product.sku %></p>
-	<p><%= link_to "Add to cart", add_to_shopping_cart_path(:id =>product[:id]), :method => :post %></p>
+	<p><%= render "layouts/add_cart", :product => product.id %></p><!-- link_to "Add to cart", add_to_shopping_cart_path(:id =>product[:id]), :method => :post -->
 </div>

@@ -13,5 +13,5 @@ ActiveAdmin.register Address do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :street, :city, :state_id, :country, :zip_code, :created_at, :updated_at
+  permit_params :id, :street, :city, :state_id, :zip_code, :created_at, :updated_at
 end

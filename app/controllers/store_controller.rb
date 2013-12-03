@@ -8,6 +8,7 @@ class StoreController < ApplicationController
   	@products = Product.all
   	@navbar = NavBar.all
     @cart_products = Product.all
+    
   end
 
   def show
@@ -66,7 +67,7 @@ class StoreController < ApplicationController
     @navbar = NavBar.all
     @cart_products = Product.all
    
-    session[:cart].push({"id" => params[:id], "quant" => 1})
+    session[:cart].push({"id" => params[:format], "quant" => params[:quant]})
     
     redirect_to action: 'index'
 

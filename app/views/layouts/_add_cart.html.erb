@@ -1,0 +1,5 @@
+<%= form_tag(add_to_shopping_cart_path(product), method: "post") do %>
+ 
+  <%= select_tag('quant',options_for_select(1..10)) %>
+  <%= submit_tag('Add to Cart') %>
+<% end %>

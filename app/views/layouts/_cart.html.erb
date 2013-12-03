@@ -1,11 +1,11 @@
 <div id="cart">
   <ul>
-    <% if session[:cart].size < 1 %>
+    <% if session[:cart].empty? || session[:cart].nil? %>
 	  <li class="cart_item">Cart is empty</li>
     <% else %>
       <% session[:cart].each do |product| %>
         <li class="cart_item">
-          <%= @cart_products[product["id"].to_i].name %>
+          <%= @cart_products.find(product["id"].to_i).name %>
           Quantity:<%= product["quant"] %> 
           <%= link_to "Remove", del_from_shopping_cart_path(:id => product["id"]), :method => :post %>
         </li>
