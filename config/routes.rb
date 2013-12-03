@@ -5,6 +5,10 @@ LastTimeEStore::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  match 'del_from_shopping_cart' => 'store#del_from_shopping_cart', :as => 'del_from_shopping_cart', :via => :post
+
+  match 'add_to_shopping_cart' => 'store#add_to_shopping_cart', :as => 'add_to_shopping_cart', :via => :post
+  match 'shopping_cart' => 'store#shopping_cart', :as => 'shopping_cart', :via => :post
   match 'search_results' => 'store#search_results', :as => 'search_results', :via => [:get, :post]
   match '*permalk' => 'nav_bar#index', :via => :get
   # The priority is based upon order of creation: first created -> highest priority.

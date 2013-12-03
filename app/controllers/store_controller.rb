@@ -1,6 +1,9 @@
 class StoreController < ApplicationController
 
   def index
+    if session[:cart].nil?
+      session[:cart] = Array.new
+    end
     @categories = Category.find(:all, :order => 'category_id')
   	@products = Product.all
   	@navbar = NavBar.all
@@ -46,5 +49,27 @@ class StoreController < ApplicationController
   	end
   	@navbar = NavBar.all
   end
+  
+  def shopping_cart
+    @categories = Category.find(:all, :order => 'category_id')
+    @products = Product.all
+    @navbar = NavBar.all
+    
 
+  end
+
+  def add_to_shopping_cart
+    @categories = Category.find(:all, :order => 'category_id')
+    @navbar = NavBar.all
+   
+    session[:cart].push(params[:id])
+    
+    redirect_to action: 'index'
+
+  end
+
+  def del_from_shopping_cart
+    session[:cart] = session[:cart] - [params[:id]]
+    redirect_to action: 'index'
+  end
 end
