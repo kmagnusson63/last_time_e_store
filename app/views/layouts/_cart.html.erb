@@ -5,8 +5,9 @@
     <% else %>
       <% session[:cart].each do |product| %>
         <li class="cart_item">
-          <%= @products[product.to_i].name %>
-          <%= link_to "Remove", del_from_shopping_cart_path(:id => product), :method => :post %>
+          <%= @cart_products[product["id"].to_i].name %>
+          Quantity:<%= product["quant"] %> 
+          <%= link_to "Remove", del_from_shopping_cart_path(:id => product["id"]), :method => :post %>
         </li>
       <% end %>
     <% end %>

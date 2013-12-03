@@ -7,12 +7,14 @@ class StoreController < ApplicationController
     @categories = Category.find(:all, :order => 'category_id')
   	@products = Product.all
   	@navbar = NavBar.all
+    @cart_products = Product.all
   end
 
   def show
     @categories = Category.all
     @navbar = NavBar.all
     @product = Product.find(params[:id])
+    @cart_products = Product.all
   end
 
   def search_results
@@ -48,28 +50,31 @@ class StoreController < ApplicationController
   	  @products = Product.where("name like '%#{params[:keywords]}%'")
   	end
   	@navbar = NavBar.all
+    @cart_products = Product.all
   end
   
   def shopping_cart
     @categories = Category.find(:all, :order => 'category_id')
     @products = Product.all
     @navbar = NavBar.all
-    
+    @cart_products = Product.all
 
   end
 
   def add_to_shopping_cart
     @categories = Category.find(:all, :order => 'category_id')
     @navbar = NavBar.all
+    @cart_products = Product.all
    
-    session[:cart].push(params[:id])
+    session[:cart].push({"id" => params[:id], "quant" => 1})
     
     redirect_to action: 'index'
 
   end
 
   def del_from_shopping_cart
-    session[:cart] = session[:cart] - [params[:id]]
+    session[:cart].reject! {|h| h["id"] == params[:id] }
     redirect_to action: 'index'
   end
+
 end
