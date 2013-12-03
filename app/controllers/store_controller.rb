@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
 
   def index
-  	@categories = Category.all
+    @categories = Category.find(:all, :order => 'category_id')
   	@products = Product.all
   	@navbar = NavBar.all
   end
