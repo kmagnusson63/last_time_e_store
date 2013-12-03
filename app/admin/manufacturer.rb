@@ -13,5 +13,5 @@ ActiveAdmin.register Manufacturer do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :name, :address_id, :email, :phone_number, :contact_name
+  permit_params :id, :name, :address_id, :email, :phone_number, :contact_name, :created_at, :updated_at
 end

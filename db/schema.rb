@@ -76,8 +76,8 @@ ActiveRecord::Schema.define(version: 20131130180747) do
   create_table "images", force: true do |t|
     t.string   "filename"
     t.string   "location"
-    t.integer  "images_id"
-    t.integer  "products_id"
+    t.integer  "image_id"
+    t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

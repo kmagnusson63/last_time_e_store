@@ -13,5 +13,5 @@ ActiveAdmin.register Image do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :filename, :location, :product_id, :image_id
+  permit_params :id, :filename, :location, :products_id, :created_at, :updated_at
 end

@@ -13,5 +13,5 @@ ActiveAdmin.register NavBar do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :title, :content, :permalink, :order
+  permit_params :id, :title, :content, :permalink, :order, :created_at, :updated_at
 end

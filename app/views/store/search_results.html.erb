@@ -1,9 +1,10 @@
 <div id="content">
   <h2>Search Results</h2>
-  <% if @products.present? %>
-    <% if @products.empty? %>
-      <p>'<%= params[:keywords] %>' returned no results</p>
+    <% if @products.present? %>
+    <% if @products.nil? %>
+      <p>'<%= @keywords %>' returned no results</p>
     <% end %>
-    <%= render @products %>
+    
   <% end %>
+  <%= render @products %>
 </div>

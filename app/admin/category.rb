@@ -13,5 +13,5 @@ ActiveAdmin.register Category do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :name, :category_id
+  permit_params :id, :name, :category_id, :created_at, :updated_at
 end

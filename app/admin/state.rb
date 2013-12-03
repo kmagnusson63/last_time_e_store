@@ -13,5 +13,5 @@ ActiveAdmin.register State do
   #  permitted << :other if resource.something?
   #  permitted
   # end
-  permit_params :id, :name, :tax_rate
+  permit_params :id, :name, :tax_rate, :created_at, :updated_at
 end
