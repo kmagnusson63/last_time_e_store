@@ -37,11 +37,21 @@ class StoreController < ApplicationController
           where_words += Category.find(cat[:id]).name
           x += 1
         end
-        @products = Product.where(where_clause).all
-        @keywords = where_words
+        if params[:keywords].present?
+          @keywords = params[:keywords] + " in " + where_words
+          @products = Product.where(where_clause).where("name like '%#{params[:keywords]}%'")
+        else
+          @products = Product.where(where_clause).all
+          @keywords = where_words
+        end
       elsif categ.count > 0
-        @products = Product.where("id = #{category[:id]}")
-        @keywords = category[:id].name
+        if !params[:category].empty? and !params[:keywords].empty?
+          @products = Product.where("id = #{category[:id]}").where("name like '%#{params[:keywords]}%'")
+          @keywords = params[:keywords] + " in " + category[:id].name
+        else
+          @products = Product.where("id = #{category[:id]}")
+          @keywords = category[:id].name
+        end
       else
         @keywords = Category.where("id = #{params[:category]}").first.name
         @products = Product.all.where("category_id = #{params[:category]}")
@@ -50,6 +60,8 @@ class StoreController < ApplicationController
       @keywords = params[:keywords]
   	  @products = Product.where("name like '%#{params[:keywords]}%'")
   	end
+    
+
   	@navbar = NavBar.all
     @cart_products = Product.all
   end
@@ -77,7 +89,7 @@ class StoreController < ApplicationController
         end
         @shopping_cart_products = Product.where(where_string).all
       else
-        @shopping_cart_products = Product.find(line["id"].to_i)
+        @shopping_cart_products = Product.find(session[:cart][0]["id"].to_i)
       end
     end
     @shopping_cart_prod = where_string
@@ -107,7 +119,7 @@ class StoreController < ApplicationController
         end
         @shopping_cart_products = Product.where(where_string).all
       else
-        @shopping_cart_products = Product.find(line["id"].to_i)
+        @shopping_cart_products = Product.find(session[:cart][0]["id"].to_i)
       end
     end
     @shopping_cart_prod = where_string
@@ -124,6 +136,17 @@ class StoreController < ApplicationController
 
   end
 
+  def single_checkout
+    @categories = Category.find(:all, :order => 'category_id')
+    @navbar = NavBar.all
+    @cart_products = Product.all
+   
+    session[:cart].push({"id" => params[:format], "quant" => 1})
+    
+    redirect_to action: 'confirm_shopping_cart'
+
+  end
+
   def del_from_shopping_cart
     session[:cart].reject! {|h| h["id"] == params[:id] }
     redirect_to action: 'index'
@@ -135,10 +158,11 @@ class StoreController < ApplicationController
     @products = Product.all
     @navbar = NavBar.all
     @cart_products = Product.all
-    if params[:username].empty?
+    if params[:username].empty? or params[:name].empty? or params[:email].empty? or params[:phone_number].empty? or params[:street].empty? or params[:city].empty? or params[:state].empty? or params[:zip_code].empty?
       redirect_to action: 'confirm_shopping_cart'
     else
-
+      new_address = Address(params[:street], params[:city], params[:state], params[:zip_code])
+      new_customer = Customer(params[:username], params[:name], params[:email], params[:phone_number])
     end
   end
 end

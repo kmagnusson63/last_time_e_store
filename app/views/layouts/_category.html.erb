@@ -4,13 +4,13 @@
 		  <% if category[:category_id].nil? %>
 		
 		  	<li><%= link_to category.name, search_results_path(:category => category.id) %></li>
-		  	<ul class="children">
+		  	<li><ul class="children">
 		  	  <% @categories.each do |children| %>
 		  		<% if children[:category_id] == category[:id] %>
 		  		  <li><%= link_to children.name, search_results_path(:category => children.id) %></li>
 		  		<% end %>
 			  <% end %>
-			</ul>
+			</ul></li>
 		  <% end %>
 		<% end %>
 	</ul>

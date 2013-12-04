@@ -18,10 +18,11 @@
   </div>
   <div class="field">
     <%= label_tag( :state, "State: ") %><br />
-    <%= text_field_tag( :state) %>
+    <%= select_tag "state", options_from_collection_for_select(@state, "id", "name"), :prompt => "Select state" %>
   </div>
   <div class="field">
     <%= label_tag( :zip_code, "Zip Code: ") %><br />
+
     <%= text_field_tag( :zip_code) %>
   </div>
   <div class="field">
