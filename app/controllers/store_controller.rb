@@ -37,7 +37,7 @@ class StoreController < ApplicationController
           where_words += Category.find(cat[:id]).name
           x += 1
         end
-        @products = Product.where(where_clause)
+        @products = Product.where(where_clause).all
         @keywords = where_words
       elsif categ.count > 0
         @products = Product.where("id = #{category[:id]}")
@@ -60,6 +60,27 @@ class StoreController < ApplicationController
     @navbar = NavBar.all
     @cart_products = Product.all
 
+    if session[:cart].empty?
+
+    else
+      if session[:cart].size > 1
+        x = 1
+        where_string = ""
+        session[:cart].each do |line|
+          if x > 1
+            where_string += " OR "
+          end
+          where_string += "id = '"
+          where_string += line["id"]
+          where_string += "'"
+          x += 1
+        end
+        @shopping_cart_products = Product.where(where_string).all
+      else
+        @shopping_cart_products = Product.find(line["id"].to_i)
+      end
+    end
+    @shopping_cart_prod = where_string
   end
 
   def add_to_shopping_cart

@@ -2,6 +2,7 @@
 	<ul class="top_level">
 		<% @categories.each do |category| %>
 		  <% if category[:category_id].nil? %>
+		
 		  	<li><%= link_to category.name, search_results_path(:category => category.id) %></li>
 		  	<ul class="children">
 		  	  <% @categories.each do |children| %>

@@ -9,3 +9,28 @@
 {
 	text-align: center;
 }
+#content table
+{
+	width:60%;
+	border: 1px solid black;
+	margin: 0 auto;
+}
+#content table tr
+{
+	border-top: 1px solid black;
+	padding: 10px 0;
+	line-height: 30px;
+}
+#content table tr th, #content table tr td
+{
+	text-align: center;
+}
+#content table tr td:nth-of-type(1)
+{
+	text-align: left;
+	padding-left: 20px;
+}
+#content table tr td:nth-of-type(3), #content table tr td:nth-of-type(4)
+{
+	text-align: right;
+}

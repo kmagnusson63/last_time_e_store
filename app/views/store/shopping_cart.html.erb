@@ -1,4 +1,11 @@
 <div id="content">
   <h2>Shopping Cart</h2>
   
+  <% if session[:cart].empty? %>
+    <p>Your cart is empty</p>
+  <% else %>
+    <table>
+    <%= render 'shopping_cart_product' %>
+    </table>
+  <% end %>
 </div>

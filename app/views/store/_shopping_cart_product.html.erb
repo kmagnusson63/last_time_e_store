@@ -1,0 +1,40 @@
+  <colgroup>
+  	<col width="70%">
+    <col width="10%">
+    <col span="2" width="10%" style="text-align:right">
+  </colgroup>
+  <tr>
+    <th>Description</th>
+    <th>Quantity</th>
+    <th>Each</th>
+    <th>Price</th>
+   </tr>
+   <% subtotal = 0 %>
+   <% session[:cart].each do |line_item| %>
+     <% product = Product.find(line_item["id"].to_i) %>
+     <tr class="product">
+       <td><%= product.name %></td>
+       <td><%= line_item["quant"] %></td>
+       <td><%= product.price %></td>
+       <% subtotal += (line_item["quant"].to_i * product.price) %>
+       <td><%= (line_item["quant"].to_i * product.price) %></td>
+     </tr>
+   <% end %>
+   <tr>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td></td>
+     <td></td>
+     <td></td>
+     <td></td>
+   </tr>
+   <tr>
+     <td></td>
+     <td>Subtotal</td>
+     <td></td>
+     <td><%= subtotal %></td>
+   </tr>
