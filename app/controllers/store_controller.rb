@@ -83,6 +83,36 @@ class StoreController < ApplicationController
     @shopping_cart_prod = where_string
   end
 
+  def confirm_shopping_cart
+    @customer = Customer.new
+    @categories = Category.find(:all, :order => 'category_id')
+    @products = Product.all
+    @navbar = NavBar.all
+    @cart_products = Product.all
+
+    if session[:cart].empty?
+
+    else
+      if session[:cart].size > 1
+        x = 1
+        where_string = ""
+        session[:cart].each do |line|
+          if x > 1
+            where_string += " OR "
+          end
+          where_string += "id = '"
+          where_string += line["id"]
+          where_string += "'"
+          x += 1
+        end
+        @shopping_cart_products = Product.where(where_string).all
+      else
+        @shopping_cart_products = Product.find(line["id"].to_i)
+      end
+    end
+    @shopping_cart_prod = where_string
+  end
+
   def add_to_shopping_cart
     @categories = Category.find(:all, :order => 'category_id')
     @navbar = NavBar.all
@@ -98,5 +128,17 @@ class StoreController < ApplicationController
     session[:cart].reject! {|h| h["id"] == params[:id] }
     redirect_to action: 'index'
   end
+  
+  def confirm_order
+    # this is the last stop to saving order and submitting to payment
+    @categories = Category.find(:all, :order => 'category_id')
+    @products = Product.all
+    @navbar = NavBar.all
+    @cart_products = Product.all
+    if params[:username].empty?
+      redirect_to action: 'confirm_shopping_cart'
+    else
 
+    end
+  end
 end
