@@ -5,6 +5,7 @@ LastTimeEStore::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  match 'order' => 'store#order', :as => 'order', :via => [:get, :post]
   match 'confirm_order' => 'store#confirm_order', :as => 'confirm_order', :via => :post 
   match 'del_from_shopping_cart' => 'store#del_from_shopping_cart', :as => 'del_from_shopping_cart', :via => :post
 

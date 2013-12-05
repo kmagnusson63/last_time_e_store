@@ -141,7 +141,7 @@ class StoreController < ApplicationController
     @categories = Category.find(:all, :order => 'category_id')
     @navbar = NavBar.all
     @cart_products = Product.all
-   
+    session[:cart] = []
     session[:cart].push({"id" => params[:format], "quant" => 1})
     
     redirect_to action: 'confirm_shopping_cart'
@@ -178,5 +178,23 @@ class StoreController < ApplicationController
     @tax_rate = State.find(Address.find(new_customer.address_id).state_id).tax_rate
     @tax = @tax_rate.to_f * @subtotal.to_f
     @total = @tax.to_f + @subtotal.to_f 
+    session[:customer] = []
+    session[:customer] = {:customer => new_customer.id, :address => new_address.id, :subtotal => @subtotal, :tax_rate => @tax_rate}
+  end
+  def order
+    @categories = Category.find(:all, :order => 'category_id')
+    @products = Product.all
+    @navbar = NavBar.all
+    @cart_products = Product.all
+    @customer = Customer.find(session[:customer][:customer])
+    @address = Address.find(session[:customer][:address])
+    @subtotal = session[:customer][:subtotal]
+    @tax_rate = session[:customer][:tax_rate]
+    @order = Order.new(:customer_id => @customer.id, :address_id => @address.id, :tax_rate => @tax_rate)
+    @product = Product.find(session[:cart].first["id"].to_i)
+    @order.save!
+    @line_item = LineItem.new(:product_id => @product.id, :order_id => @order.id, :quantity => session[:cart].first["quant"].to_i, :price => @product.price)
+    @line_item.save!
+    session[:cart] = []
   end
 end
