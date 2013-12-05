@@ -2,5 +2,7 @@
 	<h3><%= product.name %></h3>
 	<p><%= product.description %></p>
 	<p>SKU: <%= product.sku %></p>
-	<p><%= render "layouts/add_cart", :product => product.id %></p><!-- link_to "Add to cart", add_to_shopping_cart_path(:id =>product[:id]), :method => :post -->
+	<% image = Image.where("product_id = '#{product.id}'").first %>
+	<%= image_tag image.filename, {width: 75} %>
+	<p><%= render "layouts/add_cart", :product => product.id %></p>
 </div>
