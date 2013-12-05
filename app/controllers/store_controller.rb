@@ -101,6 +101,7 @@ class StoreController < ApplicationController
     @products = Product.all
     @navbar = NavBar.all
     @cart_products = Product.all
+    @state = State.all
 
     if session[:cart].empty?
 
@@ -158,11 +159,24 @@ class StoreController < ApplicationController
     @products = Product.all
     @navbar = NavBar.all
     @cart_products = Product.all
+    @line_item_products = []
+    @subtotal = 0
+    session[:cart].each do |line_item|
+      product = Product.find(line_item["id"].to_i)
+      @line_item_products.push(product)
+      @subtotal += (line_item["quant"].to_i * product.price)
+    end
+
     if params[:username].empty? or params[:name].empty? or params[:email].empty? or params[:phone_number].empty? or params[:street].empty? or params[:city].empty? or params[:state].empty? or params[:zip_code].empty?
       redirect_to action: 'confirm_shopping_cart'
     else
-      new_address = Address(params[:street], params[:city], params[:state], params[:zip_code])
-      new_customer = Customer(params[:username], params[:name], params[:email], params[:phone_number])
+      new_address = Address.new(:street => params[:street], :city => params[:city], :state_id => params[:state], :zip_code => params[:zip_code])
+      new_address.save!
+      new_customer = Customer.new(:username => params[:username], :name => params[:name],:address_id => new_address.id, :email => params[:email], :phone_number => params[:phone_number])
+      new_customer.save!
     end
+    @tax_rate = State.find(Address.find(new_customer.address_id).state_id).tax_rate
+    @tax = @tax_rate.to_f * @subtotal.to_f
+    @total = @tax.to_f + @subtotal.to_f 
   end
 end

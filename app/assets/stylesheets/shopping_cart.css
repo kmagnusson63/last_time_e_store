@@ -38,3 +38,7 @@
 {
 	text-align: center;
 }
+.table_bold td
+{
+	font-weight: bold;
+}

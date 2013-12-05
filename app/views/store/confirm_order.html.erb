@@ -5,10 +5,16 @@
     <p>Your cart is empty</p>
   <% else %>
     <table>
-    <%= render 'shopping_cart_product' %>
+      <%= render 'shopping_cart_product' %>
+      <%= render 'order_confirm_entry' %>
+      <tr>
+      	<td colspan="4">
+      	  This is the link to to confirm and place order.
+      	</td>
+      </tr>
     </table>
    
   <% end %>
   
-  <%= params.inspect %>
+  <%= @line_item_products.inspect %>
 </div>
